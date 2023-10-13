@@ -1,0 +1,16 @@
+print('N:')
+N = int(input())
+print('x:')
+x0 = int(input())
+sum_func = 0
+sum_deriv = 0
+for j in range(N, -1, -1):
+    print(f'a{j}:')
+    aj = int(input())
+    sum_func += aj
+    sum_deriv += j * aj
+    if j >= 1:
+        sum_func *= x0
+    if j >= 2:
+        sum_deriv *= x0
+print(sum_func, sum_deriv)
