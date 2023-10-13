@@ -1,0 +1,20 @@
+def fibsys(x):
+    fibs = [1, 1]
+    while True:
+        new = fibs[-2] + fibs[-1]
+        if new <= x:
+            fibs.append(new)
+        else:
+            break
+    res = ''
+    for i in range(1, len(fibs) + 1):
+        elem = fibs[-i]
+        if x > elem:
+            res += '1'
+            x -= elem
+        elif x == elem:
+            res += '1' + '0' * (len(fibs) - i - 1)
+            break
+        else:
+            res += '0'
+    return int(res)
