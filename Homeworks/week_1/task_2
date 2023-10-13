@@ -1,0 +1,7 @@
+def factorial_zeros(n):
+    i = 1
+    su = 0
+    while 5 ** i <= n:
+        su += n // 5 ** i
+        i += 1
+    return su
