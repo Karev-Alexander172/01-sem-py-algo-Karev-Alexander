@@ -1,0 +1,17 @@
+A = B = 0
+print("Введите N - количество элементов в множестве A: ")
+N = int(input())
+for i in range(N):
+    print(f'Введите {i + 1}-й элемент множества A: ')
+    A += 10 ** int(input())
+print("Введите K - количество элементов в множестве B: ")
+K = int(input())
+for i in range(K):
+    print(f'Введите {i + 1}-й элемент множества B: ')
+    B += 10 ** int(input())
+
+
+A, B = str(A).zfill(32), str(B).zfill(32)
+for i in range(32):
+    if max(int(A[-i - 1]), int(B[-i - 1])) == 1:
+        print(i)
