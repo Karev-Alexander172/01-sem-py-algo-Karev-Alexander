@@ -1,20 +1,45 @@
-def fibsys(x):
-    fibs = [1, 1]
+def fibonacci(x: float):  # Составляет список из всех чисел Фибоначчи, не превосходящих x
+    fibs = [0, 1]
+    while fibs[-1] + fibs[-2] < x:
+        fibs.append(fibs[-1] + fibs[-2])
+    return fibs[2::]
+
+
+def fibsys(x: int):
+    fibs = fibonacci(x)
+    res = ''
+    i = len(fibs) - 1
+    while i >= 0:  # Проходимся по составленному списку с конца
+        if x >= fibs[i]:
+            res += '1'
+            x -= fibs[i]  # Если x больше элемента, вычитаем его из x, приписываем 1 к ответу и идём дальше
+        else:
+            res += '0'  # Если меньше, приписываем к ответу 0
+        i -= 1
+    return int(res)
+
+
+# Две функции для проверки результата
+def fibonacci_count(x: int):  # Составляет список из первых x чисел Фибоначчи, кроме 0 и 1
+    fibs = [0, 1]
     while True:
         new = fibs[-2] + fibs[-1]
-        if new <= x:
+        if len(fibs) < x + 2:
             fibs.append(new)
         else:
             break
-    res = ''
-    for i in range(1, len(fibs) + 1):
-        elem = fibs[-i]
-        if x > elem:
-            res += '1'
-            x -= elem
-        elif x == elem:
-            res += '1' + '0' * (len(fibs) - i - 1)
-            break
-        else:
-            res += '0'
-    return int(res)
+    return fibs[2:]
+
+
+def fib_to_dec(x: int):  # Посимвольно переводит число из фибоначиеввой системы счисления в десятичную
+    res = 0
+    x = str(x)[::-1]
+    fibs = fibonacci_count(len(x))
+    for i in range(0, len(x)):
+        res += int(x[i]) * fibs[i]
+    return res
+
+
+for i in range(1, 100000):
+    if fibsys(1547) != fibsys(fib_to_dec(fibsys(1547))):
+        print(i, fibsys(1547), fib_to_dec(fibsys(1547)))  # Пустой вывод - программа работает корректно
