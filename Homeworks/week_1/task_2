@@ -1,4 +1,4 @@
-def mulmod(a, b, m):
+def mulmod(a: int, b: int, m: int):
     res = 0
     b = bin(b)[2:]  # Переводим в двоичную систему
     for i in range(1, len(b) + 1):
