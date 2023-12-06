@@ -1,7 +1,17 @@
-def factorial_zeros(n):
-    i = 1
-    su = 0
-    while 5 ** i <= n:
-        su += n // 5 ** i
-        i += 1
-    return su
+def factorial(n: int):
+    return factorial(n - 1) * n if n > 1 else 1
+
+
+def factorial_zeros(n: int):
+    power = 1
+    res = 0
+    # Количество нулей на конце факториала равно количеству пятёрок в множителях и равно n // 5 + n // 25 + ...
+    while n >= power:
+        power *= 5
+        res += n // power
+    return res
+
+
+N = int(input("Введите N: "))
+print(factorial(N))
+print(factorial_zeros(N))
