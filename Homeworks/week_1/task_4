@@ -6,6 +6,7 @@ def intersect(a: str, b: str):
         if c[j] == '1':
             print(j, end='\t')  # Вывод чисел
 
+
 a = b = 0
 N = int(input("Введите N - количество различных элементов в множестве A: "))
 for i in range(N):
