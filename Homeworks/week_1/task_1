@@ -1,16 +1,23 @@
-print('N:')
-N = int(input())
-print('x:')
-x0 = int(input())
-sum_func = 0
-sum_deriv = 0
-for j in range(N, -1, -1):
-    print(f'a{j}:')
-    aj = int(input())
-    sum_func += aj
-    sum_deriv += j * aj
-    if j >= 1:
-        sum_func *= x0
-    if j >= 2:
-        sum_deriv *= x0
-print(sum_func, sum_deriv)
+def polinomial(sp: list[float], x: float, N: int):
+    sum_func = sp[0]  # Начинаем с a_n
+    for i in range(1, N + 1):  # Идём до последнего элемента в списке
+        sum_func = sum_func * x + sp[i]  # Каждый раз умножаем на x и добавляем следующий коэффициент
+    return sum_func
+
+
+def derivative(sp: list[float], x: float, N: int):
+    sum_deriv = N * sp[0]  # Начинаем с a_n * N
+    for i in range(1, N):  # Идём до предпоследнего элемента в списке
+        sum_deriv = sum_deriv * x + (N - i) * sp[i]  # Умножаем на x и добавляем следующий коэффициент, умноженный на степень
+    return sum_deriv
+
+
+N = int(input('Введите N - степень многочлена: '))
+x0 = float(input('Введите x: '))
+sp = []
+for i in range(N + 1):
+    sp.append(float(input(f'Введите a{N - i}: ')))
+
+
+print(f'Значение многочлена: {polinomial(sp, x0, N)}')
+print(f'Значение производной: {derivative(sp, x0, N)}')
