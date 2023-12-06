@@ -40,6 +40,6 @@ def fib_to_dec(x: int):  # Посимвольно переводит число 
     return res
 
 
-for i in range(1, 100000):
-    if fibsys(1547) != fibsys(fib_to_dec(fibsys(1547))):
-        print(i, fibsys(1547), fib_to_dec(fibsys(1547)))  # Пустой вывод - программа работает корректно
+for i in range(3, 100000):
+    if fibsys(i) != fibsys(fib_to_dec(fibsys(i))):
+        print(i, fibsys(i), fib_to_dec(fibsys(i)))  # Пустой вывод - программа работает корректно
