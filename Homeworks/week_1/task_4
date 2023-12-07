@@ -3,8 +3,7 @@ def intersect(a: str, b: str):
     for i in range(32):
         c += str(int(a[i] == b[i] == '1'))  # 1, если символы равны, 0, если различны
     for j in range(32):
-        if c[j] == '1':
-            print(j, end='\t')  # Вывод чисел
+        print(j * int(c[j]), end='\t')  # Вывод чисел
 
 
 a = b = 0
