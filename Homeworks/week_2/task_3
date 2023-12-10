@@ -23,5 +23,5 @@ def saddlepoint(matrix: list[list[int]], rows: int, columns: int):
 
 Rows = int(input("Введите количество строк: "))
 Columns = int(input("Введите количество столбцов: "))
-sp = [list(map(int, input(f'Введите {Columns} элементов {i + 1}-й строки через пробел: ').split())) for i in range(Rows)]
+sp = [list(map(int, input(f'Введите {Columns} элемента (-ов) {i + 1}-й строки через пробел: ').split())) for i in range(Rows)]
 saddlepoint(sp, Rows, Columns)
