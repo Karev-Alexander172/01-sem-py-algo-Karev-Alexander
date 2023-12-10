@@ -1,13 +1,9 @@
-def primediv(n):
-    primes = [i for i in range(1, abs(n) + 1)]
-    primes[0] = 0
-    k = 1
-    while k <= abs(n):
-        if primes[k - 1] != 0:
-            p = 2 * k
-            while p <= abs(n):
-                primes[p - 1] = 0
-                p += k
+def primediv(x: int):
+    primes = [i for i in range(1, abs(x) + 1)]  # Создаём массив из чисел от 1 до |x|
+    k = 2  # Коэффициент. Все числа, кратные ему, будем удалять
+    while k <= abs(x):
+        # Будем удалять всё, что кратно k и не равно ему, т. е. оставлять всё, что либо равно k, либо не кратно ему
+        primes = list(filter(lambda p: p == k or p % k != 0, primes))
         k += 1
-    primes = list(filter(lambda a: a != 0 and n % a == 0, primes))
-    print(max(primes))
+    primes = list(filter(lambda a: x % a == 0, primes))  # Оставляем только делители
+    return max(primes)
