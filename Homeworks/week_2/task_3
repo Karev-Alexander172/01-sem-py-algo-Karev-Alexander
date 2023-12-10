@@ -1,0 +1,27 @@
+def saddlepoint(matrix: list[list[int]], rows: int, columns: int):
+    max_in_row = [[0, 0, -10 ** 100] for _ in range(rows)]  # Хранит максимальное значение в каждой строке
+    min_in_column = [[0, 0, 10 ** 100] for _ in range(columns)]  # Хранит минимальное знаение в каждом столбце
+
+    for i in range(rows):
+        for j in range(columns):
+            elem = matrix[i][j]
+            if elem >= max_in_row[i][2]:  # Если больше найденного максимального, обновляем значение и координаты
+                max_in_row[i][2] = elem
+                max_in_row[i][0], max_in_row[i][1] = i + 1, j + 1
+            if elem <= min_in_column[j][2]:  # Если меньше найденного минимального, обновляем значение и координаты
+                min_in_column[j][2] = elem
+                min_in_column[j][0], min_in_column[j][1] = i + 1, j + 1
+
+    res = 'None'
+    for elem in max_in_row:
+        if elem in min_in_column:  # Если какой-то элемент есть и среди максимальных, и среди минимальных, выводим его
+            res = elem
+            print(f'Элемент {res[2]} с координатами ({res[0]}, {res[1]})')
+    if res == 'None':
+        print(res)
+
+
+Rows = int(input("Введите количество строк: "))
+Columns = int(input("Введите количество столбцов: "))
+sp = [list(map(int, input(f'Введите {Columns} элементов {i + 1}-й строки через пробел: ').split())) for i in range(Rows)]
+saddlepoint(sp, Rows, Columns)
