@@ -1,0 +1,11 @@
+def maxk(sp: list[float], k: int):
+    max_sum = current_sum = sum(sp[0:k])  # Начинаем с рассмотрения суммы первых k элементов
+    for i in range(k, len(sp)):
+        current_sum += sp[i] - sp[i - k]  # Вычитаем из суммы первый элемент и добавляем следующий в списке
+        max_sum = max(max_sum, current_sum)  # Обновляем, если нужно, максимальную сумму
+    return max_sum
+
+N = int(input("Введите N - длину массива: "))
+sp = [float(input(f'Введите {i + 1}- элемент массива: ')) for i in range(N)]
+K = int(input("Введите k: "))
+print(maxk(sp, K))
