@@ -27,7 +27,7 @@ def BinarySearch(sp: list[float], k: float, tip: int):  # Выводит инд�
 
 
 N = int(input("Введите N - длину массива: "))
-sp = [float(input(f'Введите {i + 1}- элемент массива: ')) for i in range(N)]
+sp = [float(input(f'Введите {i + 1}-й элемент массива: ')) for i in range(N)]
 K = int(input("Введите k: "))
 tip = int(input("Введите направление сортировки: "))
 print(BinarySearch(sp, K, tip))
