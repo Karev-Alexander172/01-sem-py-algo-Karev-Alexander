@@ -6,6 +6,6 @@ def maxk(sp: list[float], k: int):
     return max_sum
 
 N = int(input("Введите N - длину массива: "))
-sp = [float(input(f'Введите {i + 1}- элемент массива: ')) for i in range(N)]
+sp = [float(input(f'Введите {i + 1}-й элемент массива: ')) for i in range(N)]
 K = int(input("Введите k: "))
 print(maxk(sp, K))
