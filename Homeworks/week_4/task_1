@@ -1,1 +1,33 @@
+def BinarySearch(sp: list[float], k: float, tip: int):  # Выводит индекс, начиная с единицы
+    left, right = 0, len(sp) - 1
+    if sp[right] == k:  # Некоторые манипуляции со случаем, когда искомое значение в начале или конце массива
+        index = right + 1
+    else:
+        index = -1 + 2 * (sp[left] == k)
+    while left <= right:
+        mid = left + (right - left) // 2
+        #  Удобнее рассмотреть два случая отдельно, поскольку программу это не замедлит
+        if tip == 1:  # Случай 1 - по возрастанию
+            if k == sp[mid]:
+                index = mid + 1
+                right = mid - 1  # Если нашли нужное, сдвигаем правую границу и продолжаем, т. к. числа могут повторяться
+            elif k < sp[mid]:
+                right = mid - 1
+            else:
+                left = mid + 1   # Если больше искомого - сдвигаем правую границу, если меньше - левую
+        else:  # Случай 2 - по убыванию. Всё аналогично, но в другую сторону
+            if k == sp[mid]:
+                index = mid + 1
+                left = mid + 1
+            elif k < sp[mid]:
+                left = mid + 1
+            else:
+                right = mid - 1
+    return index
 
+
+N = int(input("Введите N - длину массива: "))
+sp = [float(input(f'Введите {i + 1}- элемент массива: ')) for i in range(N)]
+K = int(input("Введите k: "))
+tip = int(input("Введите направление сортировки: "))
+print(BinarySearch(sp, K, tip))
