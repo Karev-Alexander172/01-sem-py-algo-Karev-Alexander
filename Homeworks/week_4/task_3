@@ -1,0 +1,33 @@
+def powers(n: int):  # Возвращает список из всех чисел до 24 * 10^6, являющихся степенями n
+    sp_powers = []
+    power = n
+    while power < 24 * 10 ** 6:
+        sp_powers.append(power)
+        power *= n
+    return sp_powers
+
+
+def combinations(sp_numbers: list[float], length_of_combination: int):  # Все сочетания по length... элементов
+    if length_of_combination == 0:  # combinations(sp, 0) = 0
+        return [[]]
+    sp_combinations = []
+    for i in range(len(sp_numbers)):
+        # Фиксируем i-й элемент и рассматриваем сочетания по length - 1 элементов из списка впереди
+        for x in combinations(sp_numbers[(i + 1):], length_of_combination - 1):
+            sp_combinations.append([sp_numbers[i]] + x)
+    return sp_combinations
+
+
+def power2(sp_numbers: list[float], sp_powers: list[int]):  # Простое рассмотрение всех возможных сочетаний
+    res = 0
+    for i in range(1, len(sp_numbers) + 1):
+        for x in combinations(sp_numbers, i):
+            if sum(x) in sp_powers:
+                res += 1
+                print(f'Числа: {x}. Сумма: {sum(x)}.')
+    return res
+
+
+N = int(input("Введите N: "))
+sp = [float(input(f'Введите {i + 1}-й элемент массива: ')) for i in range(N)]
+print(power2(sp, powers(N)))
