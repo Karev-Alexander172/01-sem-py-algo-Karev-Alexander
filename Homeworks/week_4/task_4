@@ -1,0 +1,29 @@
+def swap(sp: list, a: int, b: int):  # Функция перестановки двух элементов
+    temp = sp[a]
+    sp[a] = sp[b]
+    sp[b] = temp
+
+
+def bubblesort(sp: list[float], length: int):  # Сортирует массив по возрастанию
+    left, right = 0, length - 1
+    while left < right:
+        is_sorted = True  # Проверяет, отсортирован ли массив
+        for i in range(left, right):  # Первый проход - вперёд
+            if sp[i] > sp[i + 1]:  # Сравниваем элементы, переставляем, если нужно
+                swap(sp, i, i + 1)
+                is_sorted = False
+        if is_sorted:  # Если не произошло ни одной перестановки, массив отсортирован. Завершаем цикл
+            break
+        is_sorted = True  # Аналогичная процедура
+        for j in range(right - 1, left, -1):
+            if sp[j - 1] > sp[j]:
+                swap(sp, j, j - 1)
+                is_sorted = False
+        if is_sorted:
+            break
+    return sp
+
+
+N = int(input("Введите N - размер массива: "))
+sp = [float(input(f'Введите {i + 1}-й элемент массива: ')) for i in range(N)]
+print(f'До сортировки: {sp}.\nПосле сортировки: {bubblesort(sp, N)}')
